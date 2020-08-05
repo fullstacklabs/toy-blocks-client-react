@@ -40,33 +40,33 @@ exports[`<Nodes /> should match snapshot 1`] = `
       tabIndex={0}
     >
       <div
-        className="MuiExpansionPanelSummary-content makeStyles-content-37"
+        className="MuiExpansionPanelSummary-content makeStyles-content-38"
       >
         <div
-          className="MuiBox-root MuiBox-root-82 makeStyles-summaryContent-35"
+          className="MuiBox-root MuiBox-root-83 makeStyles-summaryContent-36"
         >
           <div
-            className="MuiBox-root MuiBox-root-83"
+            className="MuiBox-root MuiBox-root-84"
           >
             <h5
-              className="MuiTypography-root makeStyles-heading-39 MuiTypography-h5"
+              className="MuiTypography-root makeStyles-heading-40 MuiTypography-h5"
             >
               Node 1
             </h5>
             <h6
-              className="MuiTypography-root makeStyles-secondaryHeading-40 MuiTypography-subtitle1"
+              className="MuiTypography-root makeStyles-secondaryHeading-41 MuiTypography-subtitle1"
             >
               https://thawing-springs-53971.herokuapp.com
             </h6>
           </div>
           <div
-            className="MuiBox-root MuiBox-root-88"
+            className="MuiBox-root MuiBox-root-89"
           >
             <span
-              className="makeStyles-dot-84 makeStyles-dot-86"
+              className="makeStyles-dot-85 makeStyles-dot-87"
             />
             <span
-              className="makeStyles-text-85 makeStyles-text-87"
+              className="makeStyles-text-86 makeStyles-text-88"
             >
               OFFLINE
             </span>
@@ -76,7 +76,7 @@ exports[`<Nodes /> should match snapshot 1`] = `
       <div
         aria-disabled={false}
         aria-hidden={true}
-        className="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon makeStyles-icon-36 MuiIconButton-edgeEnd"
+        className="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon makeStyles-icon-37 MuiIconButton-edgeEnd"
         onBlur={[Function]}
         onClick={undefined}
         onDragLeave={[Function]}
@@ -130,12 +130,12 @@ exports[`<Nodes /> should match snapshot 1`] = `
             role="region"
           >
             <div
-              className="MuiExpansionPanelDetails-root"
+              className="MuiExpansionPanelDetails-root makeStyles-panelDetails-35"
             >
               <p
-                className="MuiTypography-root MuiTypography-body1"
+                className="MuiTypography-root MuiTypography-body1 MuiTypography-colorError"
               >
-                Blocks go here
+                Error getting blocks
               </p>
             </div>
           </div>
@@ -166,33 +166,33 @@ exports[`<Nodes /> should match snapshot 1`] = `
       tabIndex={0}
     >
       <div
-        className="MuiExpansionPanelSummary-content makeStyles-content-37"
+        className="MuiExpansionPanelSummary-content makeStyles-content-38"
       >
         <div
-          className="MuiBox-root MuiBox-root-113 makeStyles-summaryContent-35"
+          className="MuiBox-root MuiBox-root-114 makeStyles-summaryContent-36"
         >
           <div
-            className="MuiBox-root MuiBox-root-114"
+            className="MuiBox-root MuiBox-root-115"
           >
             <h5
-              className="MuiTypography-root makeStyles-heading-39 MuiTypography-h5"
+              className="MuiTypography-root makeStyles-heading-40 MuiTypography-h5"
             >
               Node 2
             </h5>
             <h6
-              className="MuiTypography-root makeStyles-secondaryHeading-40 MuiTypography-subtitle1"
+              className="MuiTypography-root makeStyles-secondaryHeading-41 MuiTypography-subtitle1"
             >
               https://secret-lowlands-62331.herokuapp.com
             </h6>
           </div>
           <div
-            className="MuiBox-root MuiBox-root-117"
+            className="MuiBox-root MuiBox-root-118"
           >
             <span
-              className="makeStyles-dot-84 makeStyles-dot-115"
+              className="makeStyles-dot-85 makeStyles-dot-116"
             />
             <span
-              className="makeStyles-text-85 makeStyles-text-116"
+              className="makeStyles-text-86 makeStyles-text-117"
             >
               OFFLINE
             </span>
@@ -202,7 +202,7 @@ exports[`<Nodes /> should match snapshot 1`] = `
       <div
         aria-disabled={false}
         aria-hidden={true}
-        className="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon makeStyles-icon-36 MuiIconButton-edgeEnd"
+        className="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon makeStyles-icon-37 MuiIconButton-edgeEnd"
         onBlur={[Function]}
         onClick={undefined}
         onDragLeave={[Function]}
@@ -256,12 +256,12 @@ exports[`<Nodes /> should match snapshot 1`] = `
             role="region"
           >
             <div
-              className="MuiExpansionPanelDetails-root"
+              className="MuiExpansionPanelDetails-root makeStyles-panelDetails-35"
             >
               <p
-                className="MuiTypography-root MuiTypography-body1"
+                className="MuiTypography-root MuiTypography-body1 MuiTypography-colorError"
               >
-                Blocks go here
+                Error getting blocks
               </p>
             </div>
           </div>
