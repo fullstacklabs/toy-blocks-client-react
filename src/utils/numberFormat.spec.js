@@ -5,6 +5,9 @@ describe('Number Formatter', () => {
     it('returns $5.50 when passed 5.5', () => {
       expect(getCurrencyFormattedNumber(5.5)).toEqual('$5.50');
     });
+    it("return an empty string if no parameter pass", ()=>{
+      expect(getCurrencyFormattedNumber(null)).toEqual('')
+    })
   });
 
   describe('isInt', () => {
@@ -19,6 +22,7 @@ describe('Number Formatter', () => {
     it('returns true when passed int as a string', () => {
       expect(isInt('5')).toEqual(true);
     });
+    
   });
 
   describe('scrubFormatting', () => {
@@ -35,5 +39,17 @@ describe('Number Formatter', () => {
     it('returns empty string if passed empty string', () => {
       expect(getFormattedNumber('')).toEqual('');
     });
+    it('return empty if no value', () => {
+      expect(getFormattedNumber()).toEqual('')
+    })
+    it('return number without decimal point if no decimals given', () => {
+      expect(getFormattedNumber(1.)).toEqual('1')
+    })
+    it('return correct number as string', () => {
+      expect(getFormattedNumber(1.12)).toEqual('1.12')
+    })
+    it('return correct number as string', () => {
+      expect(getFormattedNumber(1.126)).toEqual('1.13')
+    })
   });
 });
