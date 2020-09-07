@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
     };
   },
   text: ({ online }) => ({
-    fontSize: theme.typography.pxToRem(14),
+    fontSize: theme.typography.pxToRem(11),
     display: "block",
     lineHeight: 1.5,
-    fontWeight: "400",
-    letterSpacing: 1,
+    fontWeight: "500",
+    letterSpacing: 1.5,
     paddingLeft: 5,
     color: online ? colors.text : colors.faded,
   }),

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions/nodes";
 import Node from "../components/Node";
+import colors from "../constants/colors";
 import { Typography, Box } from "@material-ui/core";
 
 export class Nodes extends React.Component {
@@ -29,7 +30,7 @@ export class Nodes extends React.Component {
   render() {
     const { nodes } = this.props;
     return (
-      <Box paddingTop={7}>
+      <Box paddingTop={7} bgcolor={colors.background}>
         <Typography variant="h4" component="h1">
           <strong style={{ color: "#000" }}>Nodes</strong>
         </Typography>

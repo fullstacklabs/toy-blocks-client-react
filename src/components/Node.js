@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import colors from "../constants/colors";
 import Status from "./Status";
+import Blocks from './Blocks';
 
 const Node = ({ node, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
@@ -45,8 +46,12 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
           <Status loading={node.loading} online={node.online} />
         </Box>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+      <ExpansionPanelDetails className={classes.details}>
+        <Blocks
+          loading={node.loading}
+          fetching={node.fetching} 
+          online={node.online}
+          blocks={node.blocks} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -84,6 +89,11 @@ const useStyles = makeStyles((theme) => ({
       top: -10,
       marginRight: 0,
     },
+  },
+  details: {
+    padding: 14,
+    paddingTop: 0,
+    paddingBottom: 9
   },
   heading: {
     fontSize: theme.typography.pxToRem(17),
