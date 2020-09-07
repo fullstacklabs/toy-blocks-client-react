@@ -89,7 +89,71 @@ describe('Reducers::Nodes', () => {
         nodeB
       ]
     };
-
     expect(reducer(appState, action)).toEqual(expected);
+  });
+
+    it('should handle CHECK_NODE_BLOCKS_START', () => {
+      const appState = {
+        list: [
+          {
+            ...nodeA,
+            online: true,
+            name: 'alpha',
+            loading: false,
+            fetching: false
+          },
+          nodeB
+        ]
+      };
+      const action = { type: ActionTypes.CHECK_NODE_BLOCKS_START, node: nodeA };
+      const expected = {
+        list: [
+          {
+            ...nodeA,
+            online: true,
+            name: 'alpha',
+            loading: false,
+            fetching: true
+          },
+          nodeB
+        ]
+      };
+      expect(reducer(appState, action)).toEqual(expected);
+    });
+
+    it('should handle CHECK_NODE_BLOCKS_FINISH', () => {
+      const appState = {
+        list: [
+          {
+            ...nodeA,
+            online: true,
+            name: 'alpha',
+            loading: false,
+            fetching: true
+          },
+          nodeB
+        ]
+      };
+      const blocks = [{ id: 1, attributes: { data: "this  is data"} }];
+      const action = { 
+        type: ActionTypes.CHECK_NODE_BLOCKS_FINISH, 
+        node: nodeA, 
+        res: blocks
+      };
+      const expected = {
+        list: [
+          {
+            ...nodeA,
+            online: true,
+            name: 'alpha',
+            loading: false,
+            fetching: false,
+            blocks
+          },
+          nodeB
+        ]
+      };
+
+      expect(reducer(appState, action)).toEqual(expected);
   });
 });
