@@ -43,30 +43,30 @@ exports[`<Nodes /> should match snapshot 1`] = `
         className="MuiExpansionPanelSummary-content makeStyles-content-37"
       >
         <div
-          className="MuiBox-root MuiBox-root-82 makeStyles-summaryContent-35"
+          className="MuiBox-root MuiBox-root-83 makeStyles-summaryContent-35"
         >
           <div
-            className="MuiBox-root MuiBox-root-83"
+            className="MuiBox-root MuiBox-root-84"
           >
             <h5
-              className="MuiTypography-root makeStyles-heading-39 MuiTypography-h5"
+              className="MuiTypography-root makeStyles-heading-40 MuiTypography-h5"
             >
               Node 1
             </h5>
             <h6
-              className="MuiTypography-root makeStyles-secondaryHeading-40 MuiTypography-subtitle1"
+              className="MuiTypography-root makeStyles-secondaryHeading-41 MuiTypography-subtitle1"
             >
               https://thawing-springs-53971.herokuapp.com
             </h6>
           </div>
           <div
-            className="MuiBox-root MuiBox-root-88"
+            className="MuiBox-root MuiBox-root-89"
           >
             <span
-              className="makeStyles-dot-84 makeStyles-dot-86"
+              className="makeStyles-dot-85 makeStyles-dot-87"
             />
             <span
-              className="makeStyles-text-85 makeStyles-text-87"
+              className="makeStyles-text-86 makeStyles-text-88"
             >
               OFFLINE
             </span>
@@ -130,13 +130,17 @@ exports[`<Nodes /> should match snapshot 1`] = `
             role="region"
           >
             <div
-              className="MuiExpansionPanelDetails-root"
+              className="MuiExpansionPanelDetails-root makeStyles-details-39"
             >
-              <p
-                className="MuiTypography-root MuiTypography-body1"
+              <div
+                className="MuiBox-root MuiBox-root-119"
               >
-                Blocks go here
-              </p>
+                <p
+                  className="MuiTypography-root makeStyles-loading-118 MuiTypography-body1"
+                >
+                  Offline, couldn't retrieve blocks
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -169,30 +173,30 @@ exports[`<Nodes /> should match snapshot 1`] = `
         className="MuiExpansionPanelSummary-content makeStyles-content-37"
       >
         <div
-          className="MuiBox-root MuiBox-root-113 makeStyles-summaryContent-35"
+          className="MuiBox-root MuiBox-root-120 makeStyles-summaryContent-35"
         >
           <div
-            className="MuiBox-root MuiBox-root-114"
+            className="MuiBox-root MuiBox-root-121"
           >
             <h5
-              className="MuiTypography-root makeStyles-heading-39 MuiTypography-h5"
+              className="MuiTypography-root makeStyles-heading-40 MuiTypography-h5"
             >
               Node 2
             </h5>
             <h6
-              className="MuiTypography-root makeStyles-secondaryHeading-40 MuiTypography-subtitle1"
+              className="MuiTypography-root makeStyles-secondaryHeading-41 MuiTypography-subtitle1"
             >
               https://secret-lowlands-62331.herokuapp.com
             </h6>
           </div>
           <div
-            className="MuiBox-root MuiBox-root-117"
+            className="MuiBox-root MuiBox-root-124"
           >
             <span
-              className="makeStyles-dot-84 makeStyles-dot-115"
+              className="makeStyles-dot-85 makeStyles-dot-122"
             />
             <span
-              className="makeStyles-text-85 makeStyles-text-116"
+              className="makeStyles-text-86 makeStyles-text-123"
             >
               OFFLINE
             </span>
@@ -256,13 +260,17 @@ exports[`<Nodes /> should match snapshot 1`] = `
             role="region"
           >
             <div
-              className="MuiExpansionPanelDetails-root"
+              className="MuiExpansionPanelDetails-root makeStyles-details-39"
             >
-              <p
-                className="MuiTypography-root MuiTypography-body1"
+              <div
+                className="MuiBox-root MuiBox-root-125"
               >
-                Blocks go here
-              </p>
+                <p
+                  className="MuiTypography-root makeStyles-loading-118 MuiTypography-body1"
+                >
+                  Offline, couldn't retrieve blocks
+                </p>
+              </div>
             </div>
           </div>
         </div>
