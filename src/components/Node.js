@@ -8,9 +8,11 @@ import {
   ExpansionPanelDetails,
   makeStyles,
   Box,
+  CircularProgress
 } from "@material-ui/core";
 import colors from "../constants/colors";
 import Status from "./Status";
+import Block from "./Block";
 
 const Node = ({ node, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
@@ -42,11 +44,33 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
               {node.url}
             </Typography>
           </Box>
-          <Status loading={node.loading} online={node.online} />
+          <Status loading={node.loading} online={node.online} expanded={expanded} />
         </Box>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+      <ExpansionPanelDetails className={classes.nodeBlocks}>
+        {node.blocks.loading ? (
+          <CircularProgress />
+        ) : node.blocks.errorFecth ? (
+          <Typography
+            variant="subtitle1"
+            className={classes.secondaryHeading}
+          >
+            {'Error to fetch the Blocks. Please try again.'}
+          </Typography>
+        ) : node.blocks.data && node.blocks.data.length > 0 ? (
+          <Box width={1}>
+            {node.blocks.data.map((block) => (
+              <Block key={block.id} block={block}></Block>
+            ))}
+          </Box>
+          ) : <Typography
+            variant="subtitle1"
+            className={classes.secondaryHeading}
+          >
+              {'There aren\'t Blocks, it is an empty node.'}
+          </Typography>
+
+        }
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -59,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     "&:before": {
       backgroundColor: "unset",
     },
+    borderRadius: "4px"
   },
   summary: {
     padding: "0 24px",
@@ -69,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    paddingRight: 20,
+    paddingRight: 0,
   },
   icon: {
     color: colors.faded,
@@ -79,10 +104,7 @@ const useStyles = makeStyles((theme) => ({
   },
   expanded: {
     "& $icon": {
-      paddingLeft: 0,
-      paddingRight: 12,
-      top: -10,
-      marginRight: 0,
+      top: -10
     },
   },
   heading: {
@@ -96,6 +118,9 @@ const useStyles = makeStyles((theme) => ({
     color: colors.faded,
     lineHeight: 2,
   },
+  nodeBlocks: {
+    padding: "8px 24px 10px"
+  }
 }));
 
 Node.propTypes = {

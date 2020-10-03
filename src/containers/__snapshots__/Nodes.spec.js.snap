@@ -43,10 +43,10 @@ exports[`<Nodes /> should match snapshot 1`] = `
         className="MuiExpansionPanelSummary-content makeStyles-content-37"
       >
         <div
-          className="MuiBox-root MuiBox-root-82 makeStyles-summaryContent-35"
+          className="MuiBox-root MuiBox-root-83 makeStyles-summaryContent-35"
         >
           <div
-            className="MuiBox-root MuiBox-root-83"
+            className="MuiBox-root MuiBox-root-84"
           >
             <h5
               className="MuiTypography-root makeStyles-heading-39 MuiTypography-h5"
@@ -60,13 +60,13 @@ exports[`<Nodes /> should match snapshot 1`] = `
             </h6>
           </div>
           <div
-            className="MuiBox-root MuiBox-root-88"
+            className="MuiBox-root MuiBox-root-91 makeStyles-expanded-87 makeStyles-expanded-90"
           >
             <span
-              className="makeStyles-dot-84 makeStyles-dot-86"
+              className="makeStyles-dot-85 makeStyles-dot-88"
             />
             <span
-              className="makeStyles-text-85 makeStyles-text-87"
+              className="makeStyles-text-86 makeStyles-text-89"
             >
               OFFLINE
             </span>
@@ -130,13 +130,13 @@ exports[`<Nodes /> should match snapshot 1`] = `
             role="region"
           >
             <div
-              className="MuiExpansionPanelDetails-root"
+              className="MuiExpansionPanelDetails-root makeStyles-nodeBlocks-41"
             >
-              <p
-                className="MuiTypography-root MuiTypography-body1"
+              <h6
+                className="MuiTypography-root makeStyles-secondaryHeading-40 MuiTypography-subtitle1"
               >
-                Blocks go here
-              </p>
+                There aren't Blocks, it is an empty node.
+              </h6>
             </div>
           </div>
         </div>
@@ -169,10 +169,10 @@ exports[`<Nodes /> should match snapshot 1`] = `
         className="MuiExpansionPanelSummary-content makeStyles-content-37"
       >
         <div
-          className="MuiBox-root MuiBox-root-113 makeStyles-summaryContent-35"
+          className="MuiBox-root MuiBox-root-116 makeStyles-summaryContent-35"
         >
           <div
-            className="MuiBox-root MuiBox-root-114"
+            className="MuiBox-root MuiBox-root-117"
           >
             <h5
               className="MuiTypography-root makeStyles-heading-39 MuiTypography-h5"
@@ -186,13 +186,13 @@ exports[`<Nodes /> should match snapshot 1`] = `
             </h6>
           </div>
           <div
-            className="MuiBox-root MuiBox-root-117"
+            className="MuiBox-root MuiBox-root-121 makeStyles-expanded-87 makeStyles-expanded-120"
           >
             <span
-              className="makeStyles-dot-84 makeStyles-dot-115"
+              className="makeStyles-dot-85 makeStyles-dot-118"
             />
             <span
-              className="makeStyles-text-85 makeStyles-text-116"
+              className="makeStyles-text-86 makeStyles-text-119"
             >
               OFFLINE
             </span>
@@ -256,13 +256,13 @@ exports[`<Nodes /> should match snapshot 1`] = `
             role="region"
           >
             <div
-              className="MuiExpansionPanelDetails-root"
+              className="MuiExpansionPanelDetails-root makeStyles-nodeBlocks-41"
             >
-              <p
-                className="MuiTypography-root MuiTypography-body1"
+              <h6
+                className="MuiTypography-root makeStyles-secondaryHeading-40 MuiTypography-subtitle1"
               >
-                Blocks go here
-              </p>
+                There aren't Blocks, it is an empty node.
+              </h6>
             </div>
           </div>
         </div>
