@@ -8,9 +8,11 @@ import {
   ExpansionPanelDetails,
   makeStyles,
   Box,
+  CircularProgress
 } from "@material-ui/core";
 import colors from "../constants/colors";
 import Status from "./Status";
+import Blocks from "../containers/Blocks"
 
 const Node = ({ node, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
@@ -46,13 +48,22 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
         </Box>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+        {node.blocks && (
+          <div className={classes.blocks}>
+            {node.blocks.loading && <CircularProgress />}
+            {!node.blocks.loading && node.blocks.error && <Typography>Opps... something happened</Typography>}
+            {!node.blocks.loading && node.blocks.data.length > 0 && <Blocks blocks={node.blocks.data} />}
+          </div>
+        )}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
+  blocks: {
+    width: "100%"
+  },
   root: {
     margin: "16px 0",
     boxShadow: "0px 3px 6px 1px rgba(0,0,0,0.15)",

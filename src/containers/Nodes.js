@@ -20,6 +20,10 @@ export class Nodes extends React.Component {
   }
 
   toggleNodeExpanded(node) {
+    if (node.online) {
+      this.props.actions.fetchBlocks(node)
+    }
+
     this.setState({
       expandedNodeURL:
         node.url === this.state.expandedNodeURL ? null : node.url,
