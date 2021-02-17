@@ -1,4 +1,4 @@
-import {CHECK_NODE_STATUS_START, CHECK_NODE_STATUS_SUCCESS, CHECK_NODE_STATUS_FAILURE} from '../constants/actionTypes';
+import { CHECK_NODE_STATUS_START, CHECK_NODE_STATUS_SUCCESS, CHECK_NODE_STATUS_FAILURE, FETCH_BLOCKS_START, FETCH_BLOCKS_SUCCESS, FETCH_BLOCKS_FAILURE } from '../constants/actionTypes';
 import initialState from './initialState';
 
 export default function nodesReducer(state = initialState().nodes, action) {
@@ -54,6 +54,72 @@ export default function nodesReducer(state = initialState().nodes, action) {
           ...state.list.slice(nodeIndex + 1)
         ];
       }
+      return {
+        ...state,
+        list
+      };
+    case FETCH_BLOCKS_START:
+      list = state.list;
+      nodeIndex = state.list.findIndex(n => n.url === action.node.url);
+      if (nodeIndex >= 0) {
+        list = [
+          ...state.list.slice(0, nodeIndex),
+          {
+            ...state.list[nodeIndex],
+            blocks: {
+              loading: true,
+              error: false,
+              data: []
+            }
+          },
+          ...state.list.slice(nodeIndex + 1)
+        ]
+      }
+
+      return {
+        ...state,
+        list
+      };
+    case FETCH_BLOCKS_SUCCESS:
+      list = state.list;
+      nodeIndex = state.list.findIndex(n => n.url === action.node.url);
+      if (nodeIndex >= 0) {
+        list = [
+          ...state.list.slice(0, nodeIndex),
+          {
+            ...state.list[nodeIndex],
+            blocks: {
+              loading: false,
+              error: false,
+              data: action.blocks
+            }
+          },
+          ...state.list.slice(nodeIndex + 1)
+        ]
+      }
+
+      return {
+        ...state,
+        list
+      };
+    case FETCH_BLOCKS_FAILURE:
+      list = state.list;
+      nodeIndex = state.list.findIndex(n => n.url === action.node.url);
+      if (nodeIndex >= 0) {
+        list = [
+          ...state.list.slice(0, nodeIndex),
+          {
+            ...state.list[nodeIndex],
+            blocks: {
+              loading: false,
+              error: true,
+              data: []
+            }
+          },
+          ...state.list.slice(nodeIndex + 1)
+        ]
+      }
+
       return {
         ...state,
         list
