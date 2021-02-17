@@ -21,7 +21,7 @@ describe('Actions', () => {
   //   expect(actual).toEqual(expected);
   // });
 
-  it('should create an action to save fuel savings', () => {
+  it('should create an action to check node status', () => {
     const dispatch = jest.fn();
     const expected = {
       type: ActionTypes.CHECK_NODE_STATUS_START,

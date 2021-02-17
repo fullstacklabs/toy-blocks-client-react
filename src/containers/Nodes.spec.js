@@ -9,7 +9,8 @@ import Node from "../components/Node";
 
 describe("<Nodes />", () => {
   const actions = {
-    checkNodeStatuses: jest.fn()
+    checkNodeStatuses: jest.fn(),
+    retrieveBlocks: jest.fn()
   };
 
   const nodes = {
@@ -51,5 +52,32 @@ describe("<Nodes />", () => {
     const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
+  });
+
+  describe("toggleNodeExpanded", () => {
+    let node;
+    let wrapper;
+    beforeAll(() => {
+      node = nodes.list[0];
+      wrapper = shallow(
+        <Nodes
+          actions={actions}
+          nodes={nodes}
+        />
+      );
+    });
+
+    it("should set expandedNodeURL in the state", () => {
+      wrapper.instance().toggleNodeExpanded(node);
+      expect(wrapper.state().expandedNodeURL).toBe(node.url);
+      expect(actions.retrieveBlocks).toHaveBeenCalledTimes(0);
+    });
+
+    it("should call retrieveBlocks", () => {
+      node.online = true;
+      wrapper.instance().toggleNodeExpanded(node);
+      expect(actions.retrieveBlocks).toHaveBeenCalledTimes(1);
+      expect(actions.retrieveBlocks).toHaveBeenCalledWith(node);
+    });
   });
 });
