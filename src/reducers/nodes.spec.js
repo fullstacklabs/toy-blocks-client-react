@@ -92,4 +92,105 @@ describe('Reducers::Nodes', () => {
 
     expect(reducer(appState, action)).toEqual(expected);
   });
+
+  it('should handle RETRIEVE_BLOCKS_START', () => {
+    const appState = {
+      list: [nodeA, nodeB]
+    };
+    const action = { type: ActionTypes.RETRIEVE_BLOCKS_START, node: nodeA };
+    const expected = {
+      list: [
+        {
+          ...nodeA,
+          blocks: {
+            loading: true,
+            error: false,
+            data: []
+          }
+        },
+        nodeB
+      ]
+    };
+
+    expect(reducer(appState, action)).toEqual(expected);
+  });
+
+  it('should handle RETRIEVE_BLOCKS_SUCCESS', () => {
+    const appState = {
+      list: [nodeA, nodeB]
+    };
+    const mockData = [
+      {
+        id: "5",
+        type: "blocks",
+        attributes: {
+          index: 1,
+          timestamp: 1530679678,
+          data: "The Human Torch"
+        }
+      },
+      {
+        id: "6",
+        type: "blocks",
+        attributes: {
+          index: 2,
+          timestamp: 1530679684,
+          data: "id denied"
+        }
+      },
+      {
+        id: "7",
+        type: "blocks",
+        attributes: {
+          index: 3,
+          timestamp: 1530679689,
+          data: "a bank loan"
+        }
+      }
+    ];
+    const action = {
+      type: ActionTypes.RETRIEVE_BLOCKS_SUCCESS,
+      node: nodeA,
+      blocks: {
+        data: mockData
+      }
+    };
+    const expected = {
+      list: [
+        {
+          ...nodeA,
+          blocks: {
+            loading: false,
+            error: false,
+            data: mockData
+          }
+        },
+        nodeB
+      ]
+    };
+
+    expect(reducer(appState, action)).toEqual(expected);
+  });
+
+  it('should handle RETRIEVE_BLOCKS_FAILURE', () => {
+    const appState = {
+      list: [nodeA, nodeB]
+    };
+    const action = { type: ActionTypes.RETRIEVE_BLOCKS_FAILURE, node: nodeA };
+    const expected = {
+      list: [
+        {
+          ...nodeA,
+          blocks: {
+            loading: false,
+            error: true,
+            data: []
+          }
+        },
+        nodeB
+      ]
+    };
+
+    expect(reducer(appState, action)).toEqual(expected);
+  });
 });
