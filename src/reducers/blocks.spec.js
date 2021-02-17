@@ -1,7 +1,7 @@
 import * as ActionTypes from '../constants/actionTypes';
 import reducer from './nodes';
 
-describe('', () => {
+describe('Reducers::Blocks', () => {
     const nodeA = {
         url: 'https://nodea.com'
     }
