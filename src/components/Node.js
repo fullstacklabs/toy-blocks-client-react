@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
@@ -8,12 +8,54 @@ import {
   ExpansionPanelDetails,
   makeStyles,
   Box,
+  CircularProgress,
+  Grid
 } from "@material-ui/core";
 import colors from "../constants/colors";
 import Status from "./Status";
+import axios from "axios";
+import Block from "./Block";
+
+const useBlocks = (expanded, online, url) => {
+  const [blocks, setBlocks] = useState([]);
+  const [showLoading, setShowloading] = useState(false);
+  const [showError, setShowError] = useState(false);
+
+  useEffect(() => {
+    if (expanded && online) {
+      setShowloading(true);
+      setShowError(false);
+
+      axios.get(`${url}/api/v1/blocks`).then(r => {
+        setShowloading(false);
+        setBlocks(r.data.data);
+      }).catch(() => {
+        setShowloading(false);
+        setShowError(true);
+      });
+    }
+  }, [expanded, online, url]);
+
+  return { blocks, showLoading, showError };
+};
 
 const Node = ({ node, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
+  const { blocks, showLoading, showError } = useBlocks(expanded, node.online, node.url);
+
+  const errorAlert = (
+    <Box className={classes.errorBlock}>
+      The blocks could not be loaded :(
+    </Box>
+  );
+  const messageBlock = (
+    <Grid container justify="center">
+      {showError && errorAlert}
+      {showLoading && <CircularProgress data-testid="spinner" />}
+      {!showError && !showLoading && <Box data-testid="empty">Nothing to show</Box>}
+    </Grid>
+  );
+
   return (
     <ExpansionPanel
       elevation={3}
@@ -45,8 +87,9 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
           <Status loading={node.loading} online={node.online} />
         </Box>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+      <ExpansionPanelDetails className={classes.blocksPanel}>
+        {!blocks.length && messageBlock}
+        {blocks.map(block => <Block key={block.id} attributes={block.attributes} />)}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -96,6 +139,15 @@ const useStyles = makeStyles((theme) => ({
     color: colors.faded,
     lineHeight: 2,
   },
+  blocksPanel: {
+    flexDirection: "column"
+  },
+  errorBlock: {
+    backgroundColor: "#f44336",
+    color: "#fff",
+    padding: 5,
+    borderRadius: 3
+  }
 }));
 
 Node.propTypes = {
