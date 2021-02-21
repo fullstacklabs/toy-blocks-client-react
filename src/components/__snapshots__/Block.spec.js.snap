@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Block /> should match snapshot 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-5 makeStyles-panel-3"
+>
+  <sub
+    className="makeStyles-sub-1"
+  >
+    001
+  </sub>
+  <p
+    className="makeStyles-detail-2"
+  >
+    Some descript
+  </p>
+</div>
+`;
