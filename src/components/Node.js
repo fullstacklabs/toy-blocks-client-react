@@ -49,7 +49,7 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
         <Box className={classes.blocksContainer}>
           {node.blocks.map((block) => {
             return (
-              <Box className={classes.blockContainer}>
+              <Box key={block.id} className={classes.blockContainer}>
                 <Typography className={classes.blockid}>
                   {block.id}
                 </Typography>
