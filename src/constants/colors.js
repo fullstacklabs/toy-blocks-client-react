@@ -8,4 +8,5 @@ export default {
   contentBackground: "#f8f8f8",
   border: "#aaaaaa",
   white: "#ffffff",
+  block: "#D3D3D3",
 };

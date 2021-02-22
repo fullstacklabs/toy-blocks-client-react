@@ -5,10 +5,10 @@ import configureStore from './configureStore';
 describe('Store', () => {
   const nodes = {
     list: [
-      { url: 'a.com', online: false, name: null, loading: false },
-      { url: 'b.com', online: false, name: null, loading: false },
-      { url: 'c.com', online: false, name: null, loading: false },
-      { url: 'd.com', online: false, name: null, loading: false }
+      { url: 'a.com', online: false, name: null, loading: false, blocks: [] },
+      { url: 'b.com', online: false, name: null, loading: false, blocks: [] },
+      { url: 'c.com', online: false, name: null, loading: false, blocks: [] },
+      { url: 'd.com', online: false, name: null, loading: false, blocks: [] }
     ]
   };
 
@@ -19,24 +19,24 @@ describe('Store', () => {
     const store = configureStore({nodes});
 
     const actions = [
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'alpha'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[1], res: {node_name: 'beta'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'gamma'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[2], res: {node_name: 'delta'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[1], res: {node_name: 'epsilon'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'zeta'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'eta'} },
-      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'theta'} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'alpha'}, blocks: {data: []}},
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[1], res: {node_name: 'beta'}, blocks: {data: []} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'gamma'}, blocks: {data: []} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[2], res: {node_name: 'delta'}, blocks: {data: []} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[1], res: {node_name: 'epsilon'}, blocks: {data: []} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'zeta'}, blocks: {data: []} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'eta'}, blocks: {data: []} },
+      { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodes.list[0], res: {node_name: 'theta'}, blocks: {data: []} },
     ];
     actions.forEach(action => store.dispatch(action));
 
     const actual = store.getState();
     const expected = {
       list: [
-        { url: 'a.com', online: true, name: 'theta', loading: false },
-        { url: 'b.com', online: true, name: 'epsilon', loading: false },
-        { url: 'c.com', online: true, name: 'delta', loading: false },
-        { url: 'd.com', online: false, name: null, loading: false }
+        { url: 'a.com', online: true, name: 'theta', loading: false, blocks: [] },
+        { url: 'b.com', online: true, name: 'epsilon', loading: false, blocks: [] },
+        { url: 'c.com', online: true, name: 'delta', loading: false, blocks: [] },
+        { url: 'd.com', online: false, name: null, loading: false, blocks: [] }
       ]
     };
 

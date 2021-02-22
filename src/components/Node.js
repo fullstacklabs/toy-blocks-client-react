@@ -46,7 +46,20 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
         </Box>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+        <Box className={classes.blocksContainer}>
+          {node.blocks.map((block) => {
+            return (
+              <Box className={classes.blockContainer}>
+                <Typography className={classes.blockid}>
+                  {block.id}
+                </Typography>
+                <Typography className={classes.blockData}>
+                  {block.attributes.data}
+                </Typography>
+              </Box>
+            )
+          })}
+        </Box>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -96,6 +109,23 @@ const useStyles = makeStyles((theme) => ({
     color: colors.faded,
     lineHeight: 2,
   },
+  blocksContainer: {
+    display: "block",
+    width: "100%"
+  },
+  blockContainer: {
+    background: colors.block,
+    display: "block",
+    width: "100%",
+    margin: "5px 0"
+  },
+  blockid: {
+    color: "blue",
+    margin: "0 5px"
+  },
+  blockData: {
+    margin: "0 5px"
+  }
 }));
 
 Node.propTypes = {

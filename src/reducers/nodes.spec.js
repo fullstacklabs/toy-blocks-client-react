@@ -36,7 +36,7 @@ describe('Reducers::Nodes', () => {
       list: [
         {
           ...nodeA,
-          loading: true
+          loading: true,
         },
         nodeB
       ]
@@ -49,14 +49,15 @@ describe('Reducers::Nodes', () => {
     const appState = {
       list: [nodeA, nodeB]
     };
-    const action = { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodeA, res: {node_name: 'alpha'} };
+    const action = { type: ActionTypes.CHECK_NODE_STATUS_SUCCESS, node: nodeA, res: {node_name: 'alpha'}, blocks: {data: []} };
     const expected = {
       list: [
         {
           ...nodeA,
           online: true,
           name: 'alpha',
-          loading: false
+          loading: false,
+          blocks: []
         },
         nodeB
       ]
