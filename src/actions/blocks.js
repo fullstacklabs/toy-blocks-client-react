@@ -35,7 +35,7 @@ export function getBlocks(node) {
 
       const json = await res.json();
 
-      dispatch(getBlocksSuccess(node, json));
+      dispatch(getBlocksSuccess(node, json.data));
     } catch (err) {
       dispatch(getBlocksFailure(node));
     }
