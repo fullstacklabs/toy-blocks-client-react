@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import * as actions from "../actions/nodes";
 import Node from "../components/Node";
 import { Typography, Box } from "@material-ui/core";
+import * as blocksActions from "../actions/blocks";
 
 export class Nodes extends React.Component {
   constructor(props) {
@@ -17,17 +18,20 @@ export class Nodes extends React.Component {
 
   componentDidMount() {
     this.props.actions.checkNodeStatuses(this.props.nodes.list);
+    this.props.blocksActions.getBlocksLists(this.props.nodes.list);
   }
 
   toggleNodeExpanded(node) {
+    const url = node.url === this.state.expandedNodeURL ? null : node.url;
     this.setState({
       expandedNodeURL:
-        node.url === this.state.expandedNodeURL ? null : node.url,
+        url,
     });
+    this.props.blocksActions.getBlocks(node);
   }
 
   render() {
-    const { nodes } = this.props;
+    const { nodes, blocks } = this.props;
     return (
       <Box paddingTop={7}>
         <Typography variant="h4" component="h1">
@@ -39,6 +43,7 @@ export class Nodes extends React.Component {
             key={node.url}
             expanded={node.url === this.state.expandedNodeURL}
             toggleNodeExpanded={this.toggleNodeExpanded}
+            blocks={blocks[node.url] || {}}
           />
         ))}
       </Box>
@@ -49,17 +54,21 @@ export class Nodes extends React.Component {
 Nodes.propTypes = {
   actions: PropTypes.object.isRequired,
   nodes: PropTypes.object.isRequired,
+  blocksActions: PropTypes.object,
+  blocks: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   return {
     nodes: state.nodes,
+    blocks: state.blocks
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
+    blocksActions: bindActionCreators(blocksActions, dispatch),
   };
 }
 

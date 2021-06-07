@@ -12,6 +12,10 @@ describe("<Nodes />", () => {
     checkNodeStatuses: jest.fn()
   };
 
+  const blockActions = {
+    getBlocksLists: jest.fn(),
+  };
+
   const nodes = {
     list: [
       {
@@ -34,6 +38,7 @@ describe("<Nodes />", () => {
       <Nodes
         actions={actions}
         nodes={nodes}
+        blocksActions={blockActions}
       />
     );
 

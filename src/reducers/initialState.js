@@ -26,5 +26,6 @@ export default () => ({
         loading: false
       }
     ]
-  }
+  },
+  blocks: {}
 });
