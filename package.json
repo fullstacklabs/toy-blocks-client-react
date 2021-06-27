@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test -u",
     "test:cover": "npm run test -- --coverage",
     "eject": "react-scripts eject"
   },

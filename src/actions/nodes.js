@@ -16,6 +16,14 @@ const checkNodeStatusSuccess = (node, res) => {
   };
 };
 
+const updateNodeBlocks = (node, blocks) => {
+  return {
+    type: types.UPDATE_NODE_BLOCKS,
+    node,
+    blocks,
+  };
+}
+
 const checkNodeStatusFailure = (node) => {
   return {
     type: types.CHECK_NODE_STATUS_FAILURE,
@@ -39,6 +47,18 @@ export function checkNodeStatus(node) {
       dispatch(checkNodeStatusSuccess(node, json));
     } catch (err) {
       dispatch(checkNodeStatusFailure(node));
+    }
+  };
+}
+
+export function getBlocks(node) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${node.url}/api/v1/blocks`);
+      const json = await res.json();
+      dispatch(updateNodeBlocks(node, json.data || []));
+    } catch (err) {
+      console.error(err);
     }
   };
 }

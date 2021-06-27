@@ -1,5 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {getBlocks} from "../actions/nodes";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
   Accordion,
@@ -12,7 +15,13 @@ import {
 import colors from "../constants/colors";
 import Status from "./Status";
 
-const Node = ({ node, expanded, toggleNodeExpanded }) => {
+const Node = ({node, expanded, toggleNodeExpanded, getBlocks}) => {
+
+  useEffect(() => {
+    //debugger;
+    console.log("didMount");
+    getBlocks(node);
+  }, []);
   const classes = useStyles();
   return (
     <Accordion
@@ -28,7 +37,7 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
           content: classes.content,
           expanded: classes.expanded,
         }}
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon/>}
       >
         <Box className={classes.summaryContent}>
           <Box>
@@ -42,11 +51,20 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
               {node.url}
             </Typography>
           </Box>
-          <Status loading={node.loading} online={node.online} />
+          <Status loading={node.loading} online={node.online}/>
         </Box>
       </AccordionSummary>
-      <AccordionDetails>
-        <Typography>Blocks go here</Typography>
+      <AccordionDetails className={classes.summaryDetail}>
+        {(node.blocks || []).map(block =>
+          (<Box className={classes.block}>
+            <Typography className={classes.blockTitle}>
+              {block.attributes && ("" + block.attributes.index).padStart(3, "0")}
+            </Typography>
+            <Typography className={classes.blockDetails}>
+              {block.attributes && block.attributes.data}
+            </Typography>
+          </Box>))
+        }
       </AccordionDetails>
     </Accordion>
   );
@@ -63,6 +81,20 @@ const useStyles = makeStyles((theme) => ({
   summary: {
     padding: "0 24px",
   },
+  block: {
+    background: "#DCDCDC",
+    margin: "4px 0px"
+  },
+  blockTitle: {
+    color: "blue",
+    fontSize: "12px",
+    padding: "1px 5px"
+  },
+  blockDetails: {
+    fontSize: "15px",
+    fontWeight: "500",
+    padding: "0px 5px"
+  },
   summaryContent: {
     display: "flex",
     flexDirection: "row",
@@ -70,6 +102,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: "100%",
     paddingRight: 20,
+  },
+  summaryDetail: {
+    display: "block",
+    padding: "5px 20px",
   },
   icon: {
     color: colors.faded,
@@ -104,9 +140,18 @@ Node.propTypes = {
     online: PropTypes.bool,
     name: PropTypes.string,
     loading: PropTypes.bool,
+    blocks: PropTypes.array
   }).isRequired,
   expanded: PropTypes.bool,
   toggleNodeExpanded: PropTypes.func.isRequired,
+  getBlocks: PropTypes.func.isRequired
 };
 
-export default Node;
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    ...bindActionCreators({getBlocks}, dispatch),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Node);
