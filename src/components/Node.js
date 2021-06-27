@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import colors from "../constants/colors";
 import Status from "./Status";
-import Block from './Block';
+import Blocks from '../containers/Blocks';
 
 const Node = ({ node, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
@@ -47,7 +47,7 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
         </Box>
       </AccordionSummary>
       <AccordionDetails>
-        <Block />
+        <Blocks node={node} />
       </AccordionDetails>
     </Accordion>
   );
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   summary: {
     padding: "0 24px",
   },
+
   summaryContent: {
     display: "flex",
     flexDirection: "row",

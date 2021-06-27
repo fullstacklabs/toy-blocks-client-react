@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as actions from "../actions/nodes";
+import * as nodeActions from "../actions/nodes";
+import * as blocksActions from "../actions/blocks";
 import Node from "../components/Node";
 import { Typography, Box } from "@material-ui/core";
 
@@ -13,17 +14,26 @@ export class Nodes extends React.Component {
       expandedNodeURL: null,
     };
     this.toggleNodeExpanded = this.toggleNodeExpanded.bind(this);
+    this.fetchNodeBlocks = this.fetchNodeBlocks.bind(this);
   }
 
   componentDidMount() {
-    this.props.actions.checkNodeStatuses(this.props.nodes.list);
+    this.props.nodeActions.checkNodeStatuses(this.props.nodes.list);
   }
 
   toggleNodeExpanded(node) {
     this.setState({
       expandedNodeURL:
-        node.url === this.state.expandedNodeURL ? null : node.url,
-    });
+      node.url === this.state.expandedNodeURL ? null : node.url,
+    }, this.fetchNodeBlocks);
+  }
+
+  fetchNodeBlocks() {
+    const { blocksActions } = this.props;
+    const { expandedNodeURL } = this.state;
+    if (expandedNodeURL) {
+      blocksActions.fetchBlocksLists(expandedNodeURL)
+    }
   }
 
   render() {
@@ -47,7 +57,8 @@ export class Nodes extends React.Component {
 }
 
 Nodes.propTypes = {
-  actions: PropTypes.object.isRequired,
+  nodeActions: PropTypes.object.isRequired,
+  blocksActions: PropTypes.object.isRequired,
   nodes: PropTypes.object.isRequired,
 };
 
@@ -59,7 +70,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch),
+    nodeActions: bindActionCreators(nodeActions, dispatch),
+    blocksActions: bindActionCreators(blocksActions, dispatch),
   };
 }
 

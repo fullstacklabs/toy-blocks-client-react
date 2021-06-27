@@ -27,5 +27,6 @@ const initialState = () => ({
       },
     ],
   },
+  blocks: {}
 });
 export default initialState;
