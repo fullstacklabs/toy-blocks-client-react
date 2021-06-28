@@ -9,7 +9,12 @@ import Node from "../components/Node";
 
 describe("<Nodes />", () => {
   const actions = {
-    checkNodeStatuses: jest.fn()
+    nodeActions: {
+      checkNodeStatuses: jest.fn()
+    },
+    blocksActions: {
+      fetchBlocksLists: jest.fn()
+    }
   };
 
   const nodes = {
@@ -32,7 +37,7 @@ describe("<Nodes />", () => {
   it("should contain <Node />", () => {
     const wrapper = shallow(
       <Nodes
-        actions={actions}
+        {...actions}
         nodes={nodes}
       />
     );
@@ -42,7 +47,7 @@ describe("<Nodes />", () => {
 
   it("should match snapshot", () => {
     const middlewares = [thunk];
-    const store = configureMockStore(middlewares)({nodes});
+    const store = configureMockStore(middlewares)({nodes, blocks: {} });
     const component = create(
       <Provider store={store}>
         <ConnectedNodes />

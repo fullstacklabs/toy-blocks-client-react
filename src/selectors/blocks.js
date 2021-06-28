@@ -4,7 +4,7 @@ export const getNodesBlocks = (state) => state.blocks ?? {};
 
 export const getNodeBlocks = (state, node) => {
   const blocks = getNodesBlocks(state);
-  return blocks[node?.url] ?? {};
+  return blocks[node?.url] ?? [];
 }
 
 export const blockIsLoading = (state, node) => {

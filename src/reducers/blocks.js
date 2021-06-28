@@ -9,12 +9,13 @@ import { BLOCK_STATUSES } from '../constants/blockStatuses';
 import initialState from './initialState';
 
 export default function nodesReducer(state = initialState().blocks, action) {
+  const storedNode = state?.blocks?.[action?.node] ?? {};
   switch (action.type) {
     case FETCH_BLOCK_STATUS_START:
       return {
         ...state,
         [action.node]: {
-          ...action,
+          ...storedNode,
           status: BLOCK_STATUSES.LOADING,
         }
       };
@@ -22,16 +23,17 @@ export default function nodesReducer(state = initialState().blocks, action) {
       return {
         ...state,
         [action.node]: {
-          ...action,
+          ...storedNode,
           status: BLOCK_STATUSES.SUCCESS,
+          data: action.data,
         }
       };
     case FETCH_BLOCK_STATUS_FAILURE:
       return {
         ...state,
         [action.node]: {
-          ...action,
           status: BLOCK_STATUSES.FAILURE,
+          data: action.data ?? null,
         }
       };
     default:

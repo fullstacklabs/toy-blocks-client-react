@@ -1,10 +1,20 @@
 import * as ActionTypes from "../constants/actionTypes";
-import * as ActionCreators from "./nodes";
+import * as ActionCreators from "./blocks";
 import mockFetch from "cross-fetch";
 
 jest.mock("cross-fetch");
 
-describe("Actions::Nodes", () => {
+const fakeBlock = {
+  attributes: {
+    data: "Lorem ipsum data",
+    hash: "aaaaaaaaaa",
+    index: 1,
+  },
+  id: 1,
+  type: "blocks"
+}
+
+describe("Actions::Blocks", () => {
   const dispatch = jest.fn();
 
   afterAll(() => {
@@ -18,25 +28,27 @@ describe("Actions::Nodes", () => {
     name: null,
   };
 
-  it("should fetch the node status", async () => {
+  it("should fetch the blocks list", async () => {
     mockFetch.mockReturnValueOnce(
       Promise.resolve({
         status: 200,
         json() {
-          return Promise.resolve({ node_name: "Secret Lowlands" });
+          const data = [ fakeBlock ]
+          return Promise.resolve({ data });
         },
       })
     );
-    await ActionCreators.checkNodeStatus(node)(dispatch);
+    await ActionCreators.fetchBlocksList(node.url)(dispatch);
+
     const expected = [
       {
-        type: ActionTypes.CHECK_NODE_STATUS_START,
-        node,
+        type: ActionTypes.FETCH_BLOCK_STATUS_START,
+        node: node.url,
       },
       {
-        type: ActionTypes.CHECK_NODE_STATUS_SUCCESS,
-        node,
-        res: { node_name: "Secret Lowlands" },
+        type: ActionTypes.FETCH_BLOCK_STATUS_SUCCESS,
+        node: node.url,
+        data: [fakeBlock]
       },
     ];
 
@@ -49,15 +61,17 @@ describe("Actions::Nodes", () => {
         status: 400,
       })
     );
-    await ActionCreators.checkNodeStatus(node)(dispatch);
+    await ActionCreators.fetchBlocksList(node.url)(dispatch);
+
     const expected = [
       {
-        type: ActionTypes.CHECK_NODE_STATUS_START,
-        node,
+        type: ActionTypes.FETCH_BLOCK_STATUS_START,
+        node: node.url,
       },
       {
-        type: ActionTypes.CHECK_NODE_STATUS_FAILURE,
-        node,
+        type: ActionTypes.FETCH_BLOCK_STATUS_FAILURE,
+        node: node.url,
+        data: null,
       },
     ];
 

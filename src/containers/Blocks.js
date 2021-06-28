@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import PropTypes from "prop-types";
 
 import {
   CircularProgress,
@@ -21,7 +22,7 @@ import { getNodeBlocks, blockIsLoading, blockHadFailure, blockIsIddle } from "..
 export const Blocks = ({ blocks, isLoading, isFailured, retryRequest, isIddle }) => {
   const classes = useStyles();
 
-  if (isIddle) return null;
+  if (isIddle) return <Box />;
 
   if (isFailured) {
       return (
@@ -43,6 +44,8 @@ export const Blocks = ({ blocks, isLoading, isFailured, retryRequest, isIddle })
       </Box>
     )
   }
+
+  if (!blocks?.data) return <Box />
 
   const renderBlock = (block) => {
     return (
@@ -99,6 +102,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px'
   }
 }));
+
+Blocks.propTypes = {
+  blocks: PropTypes.array,
+  isLoading: PropTypes.bool.isRequired,
+  isFailured:PropTypes.bool.isRequired,
+  isIddle: PropTypes.bool.isRequired,
+};
 
 function mapStateToProps(state, { node }) {
   return {

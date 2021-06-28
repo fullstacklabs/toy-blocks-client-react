@@ -31,7 +31,8 @@ export function fetchBlocksList(node) {
       const res = await fetch(`${node}/api/v1/blocks`);
 
       if (res.status >= 400) {
-        throw res;
+        dispatch(fetchBlocksStatusFailure(node));
+        return;
       }
 
       const json = await res.json();
@@ -44,5 +45,7 @@ export function fetchBlocksList(node) {
 }
 
 export function fetchBlocksLists(node) {
-  return (dispatch) => dispatch(fetchBlocksList(node))
+  return (dispatch) => {
+    dispatch(fetchBlocksList(node))
+  }
 }
