@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   identifier: {
     color: colors.info,
     fontWeight: 'bold',
-    fontSize: '10px',
+    fontSize: '12px',
     lineHeight: '1.4em',
     letterSpacing: '1.5px',
     textTransform: 'uppercase',
